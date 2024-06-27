@@ -21,6 +21,35 @@ class _QuoteListState extends State<QuoteList> {
     Quote('The truth is rarely pure and simple', 'Denis M'),
   ];
 
+  Widget quoteTemplate(quote){
+    return Card(
+      margin: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0.0),
+        child: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text(
+                quote.text,
+                style: TextStyle(
+                  color: Colors.grey[500],
+                  fontSize: 18.0,
+                ),
+              ),
+              const SizedBox(height: 10.0),
+              Text(
+                quote.author,
+                style: TextStyle(
+                  color: Colors.grey[600],
+                  fontSize: 18.0,
+                ),
+              ),
+            ],
+          ),
+        ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,7 +64,7 @@ class _QuoteListState extends State<QuoteList> {
         ),
       ),
       body: Column(
-        children: quotes.map((quote) => Text('${quote.text} - ${quote.author}')).toList(),
+        children: quotes.map((quote) => quoteTemplate(quote)).toList(),
       ),
     );
   }
